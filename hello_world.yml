@@ -8,7 +8,7 @@
         msg: "Hello World!"
     - name: Append test message on target dir
       become: yes
-      become_user: ec2-user
+      become_user: root
       shell: 
         chdir: "{{target_dir}}"
         cmd: echo "test message" >> ansible_test_file
