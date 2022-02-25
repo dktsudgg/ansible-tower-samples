@@ -2,6 +2,7 @@
   hosts: all
   vars: 
     - target_dir : /usr/local
+    - test_dir: /usr/local/testdir
   tasks:
     - name: Hello Message
       debug:
@@ -12,4 +13,14 @@
       shell: 
         chdir: "{{target_dir}}"
         cmd: echo "test message" >> ansible_test_file
+    - name: Append test message on test dir using ec2-user user
+      become: yes
+      become_user: ec2-user
+      shell:
+        chdir: "{{test_dir}}"
+        cmd: who >> msgfile
+    - name: Append test message on test dir using ec2-user root
+      shell:
+        chdir: "{{test_dir}}"
+        cmd: who >> msgfile
 
