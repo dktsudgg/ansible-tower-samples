@@ -1,18 +1,11 @@
 - name: Hello World Sample
   hosts: all
   vars: 
-    - target_dir : /usr/local
     - test_dir: /usr/local/testdir
   tasks:
     - name: Hello Message
       debug:
         msg: "Hello World!"
-    - name: Append test message on target dir
-      become: yes
-      become_user: root
-      shell: 
-        chdir: "{{target_dir}}"
-        cmd: echo "test message" >> ansible_test_file
     - name: Append test message on test dir using ec2-user user
       become: yes
       become_user: ec2-user
