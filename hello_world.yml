@@ -10,6 +10,6 @@
       become: yes
       become_user: ec2-user
       shell: 
-        chdir: {{target_dir}}
+        chdir: "{{target_dir}}"
         cmd: echo "test message" >> ansible_test_file
 
